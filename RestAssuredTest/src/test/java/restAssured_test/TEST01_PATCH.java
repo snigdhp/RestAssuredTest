@@ -6,28 +6,26 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-
-public class TEST01_PUT {
+public class TEST01_PATCH {
 
     @Test
-    public void test_01_put() {
+    public void test_02_patch() {
 
         JSONObject request = new JSONObject();
-        request.put("name", "Gaurav");
-        request.put("job", "QA");
+        request.put("name", "Test");
+        request.put("job", "TESTQA");
 
         System.out.println(request);
         System.out.println(request.toJSONString());
 
-        given().
-                header("content-type", "application/json").
+        given().header("content-type", "application/json").
                 contentType(ContentType.JSON).
                 accept(ContentType.JSON).
                 body(request.toJSONString()).
-                when().post("https://reqres.in/api/users/3").
-                then().statusCode(201).
-                log().all();
-
+                when().patch("https://reqres.in/api/users/2").
+                then().statusCode(200).log().all();
 
     }
+
+
 }
